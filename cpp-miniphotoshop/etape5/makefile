@@ -1,0 +1,49 @@
+#commentaire
+
+.SILENT:
+
+CLS = Classes/
+OBJ = $(CLS)ImageNG.o  $(CLS)Dimension.o $(CLS)MyQT.o	$(CLS)ImageRGB.o  $(CLS)ImageB.o 	$(CLS)Image.o	$(CLS)Couleur.o
+COMP = g++ -I $(CLS) 
+
+all:  Test5
+
+ Test5:  Test5.cpp $(OBJ)
+	$(COMP)  Test5.cpp -o  Test5 $(OBJ) -lSDL -lpthread -Wl,-O1 -pipe -O2 -std=gnu++11 -Wall -W -D_REENTRANT -fPIC -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -isystem /usr/include/qt5 -isystem /usr/include/qt5/QtWidgets -isystem /usr/include/qt5/QtGui -isystem /usr/include/qt5/QtCore -I. -I. -L/usr/lib64/qt5 -lQt5Widgets -lQt5Gui -lQt5Core -lGL
+	echo --- Creation de  Test5 ---
+
+$(CLS)ImageNG.o: $(CLS)ImageNG.cpp $(CLS)ImageNG.h
+	$(COMP) $(CLS)ImageNG.cpp -c -o $(CLS)ImageNG.o
+	echo --- Creation de ImageNG.o ---
+
+$(CLS)Dimension.o: $(CLS)Dimension.cpp $(CLS)Dimension.h
+	$(COMP) $(CLS)Dimension.cpp -c -o $(CLS)Dimension.o
+	echo --- Creation de Dimension.o ---
+
+$(CLS)MyQT.o: $(CLS)MyQT.cpp $(CLS)MyQT.h
+	$(COMP) -c $(CLS)MyQT.cpp -o $(CLS)MyQT.o -pipe -O2 -std=gnu++11 -Wall -W -D_REENTRANT -fPIC -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -isystem /usr/include/qt5 -isystem /usr/include/qt5/QtWidgets -isystem /usr/include/qt5/QtGui -isystem /usr/include/qt5/QtCore -I. -I/usr/lib64/qt5/mkspecs/linux-g++
+	echo --- Creation de MyQT.o ---
+
+$(CLS)ImageRGB.o: $(CLS)ImageRGB.cpp $(CLS)ImageRGB.h
+	$(COMP) $(CLS)ImageRGB.cpp -c -o $(CLS)ImageRGB.o
+	echo --- Creation de ImageRGB.o ---
+
+$(CLS)ImageB.o: $(CLS)ImageB.cpp $(CLS)ImageB.h
+	$(COMP) $(CLS)ImageB.cpp -c -o $(CLS)ImageB.o
+	echo --- Creation de ImageB.o ---
+
+$(CLS)Image.o: $(CLS)Image.cpp $(CLS)Image.h
+	$(COMP) $(CLS)Image.cpp -c -o $(CLS)Image.o
+	echo --- Creation de Image.o ---
+
+$(CLS)Couleur.o: $(CLS)Couleur.cpp $(CLS)Couleur.h
+	$(COMP) $(CLS)Couleur.cpp -c -o $(CLS)Couleur.o
+	echo --- Creation de Couleur.o ---
+
+clean:
+	rm -f $(CLS)*.o core
+	echo --- supp objet ---
+
+clobber: clean
+	rm -f  Test5
+	echo --- supp des executables ---

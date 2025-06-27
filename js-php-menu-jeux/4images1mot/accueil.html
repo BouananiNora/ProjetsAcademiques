@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/accueil.css">
+    <link rel="icon" href="astronomie/img/icone1.png">
+    <script src="utility.js"></script>
+    <title>Quatres images un mot</title>
+
+</head>
+<body>
+    <a class="retour_menu" href="../vue/index.html"><img class="img_porte" src="astronomie/img/exit.png"></a>
+
+    <div class="accueil-box">
+
+        <div class="img_div">
+            <img class="img_menu" src="astronomie/img/icone1.png">
+        </div>
+
+        <form action="regles/regles.html" method="POST">
+            <button type="submit" id="btn">Règles du jeu</button>
+        </form><br>
+        
+        <div class="btn-shine">
+            <h1>Choisissez un thème :</h1>
+        </div>
+
+        <div class="btn-container">
+            <form action="pays/pays.html" method="POST">
+                <div class="form-container">
+                    <button type="submit" class="shadow_btn_pays" id="btnPays">PAYS</button>
+                </div>
+            </form>
+        
+            <form action="astronomie/astronomie.html" method="POST">
+                <div class="form-container">
+                    <button type="submit" class="shadow_btn_astro" id="btnAstronomie">ASTRONOMIE</button>
+                </div>
+            </form>
+        
+            <form action="films/films.html" method="POST">
+                <div class="form-container">
+                    <button type="submit" class="shadow_btn_films" id="btnFilms">FILMS</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

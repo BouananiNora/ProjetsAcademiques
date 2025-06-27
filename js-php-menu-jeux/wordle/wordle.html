@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wordle</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="style/wordle.css" />
+</head>
+
+    <body >
+
+        <input type="button" onclick="window.location.href='../vue/index.html';" value="Retour Menu" />
+        <input type="button" onclick="window.location.href='regleswordle.html';" value="regles" />
+        
+        
+        <h1 id="titre" >Wordle</h1>
+        <hr>    
+        <br>    
+
+        <section id="infoContainer" >
+        
+            <div id="niveauScore">
+                Niveau <span id="niveauActuel">0</span>
+            </div>
+    
+            <div id="infoScore">
+                <img src="images/etoile.jpg" alt="etoile" id="iconetoile">
+                <span id="scoreActuel">0</span>
+            </div>
+
+        </section>
+
+        <div id="plateau"></div>
+
+        <br>
+
+        <section>
+            <h1 id="reponse"></h1>
+            <br>
+            <button id="btnIndice" onclick="acheterIndice()">Indices (50 points)</button>
+        </section>
+
+        <br>
+
+        <div class="center-wrapper">
+            <button id="btnRejouer" style="display:none;" onclick="rejouer()">Rejouer</button>
+        </div>
+        
+        <script src="js/wordle.js"></script>
+        
+    </body>
+
+</html>

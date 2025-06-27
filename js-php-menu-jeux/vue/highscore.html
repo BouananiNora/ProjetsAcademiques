@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Classement des jeux</title>
+    <!-- <style>
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style> -->
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+
+<body>
+    
+    <input type="button" onclick="window.location.href='index.html';" value="Retour au menu" />
+
+<h2>Classement Wordle</h2>
+<table id="wordleTable">
+    <tr>
+        <th>Utilisateur</th>
+        <th>Niveau</th>
+        <th>Score</th>
+    </tr>
+    <!-- Les données seront chargées ici via JavaScript -->
+</table>
+
+<h2>Classement 4 Images 1 Mot</h2>
+<table id="4imgTable">
+    <tr>
+        <th>Utilisateur</th>
+        <th>Thème</th>
+        <th>Score</th>
+    </tr>
+    <!-- Les données seront chargées ici via JavaScript -->
+</table>
+
+<script src="../js/highscore.js"></script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+.retour_menu {
+    position: absolute; 
+    top: 10px; 
+    left: 10px; 
+    z-index: 999; 
+    text-decoration: none; 
+}
+
+.img_porte {
+    width: auto;
+    height: 50px;
+}
+
+.img_porte:hover {
+    width: auto;
+    height: 60px;
+}
+
+.hintimage {
+	height: 40%; 
+	width: 40%;
+	
+	margin: 0.4em;
+	-webkit-transition: all 0.2s ease;
+	cursor: pointer;
+}
+
+.hintimage:hover {
+	box-shadow: 0 0 2px #fff, 0 0 3px #fff, 0 0 5px #fff, 0 0 12px #f9eeae, 0 0 15px #fef2b1, 0 0 7px #fde978, 0 0 10px #f3e287, 0 0 20px #ffea75;
+}
+
+#fullimage {
+	height: 81.7%;
+	width: 81.7%;
+	-webkit-transition: all 0.2s ease;
+	margin: 0.4em;
+}
+
+#fullimagediv {
+	display: none;
+}
+
+/*chatgpt style*/
+
+.espace {
+	color: white;
+    font-weight: bold;
+    font-size: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 70px;
+    cursor: pointer;
+    border-radius: 12px;
+    margin-right: 4px;
+    box-shadow: 0px 0px 20px rgb(167 167 167 / 34%); /* Effet d'éclairage autour de la case */
+    background-color: #000000;
+    transition: box-shadow 0.3s ease; /* Ajouter une transition pour l'effet d'éclairage */
+}
+
+.espace:hover {
+    box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.8); /* Effet d'éclairage renforcé au survol */
+}
+
+.espace:focus {
+    background-color: #555555; /* Changement de couleur de fond lorsqu'une case est sélectionnée */
+    animation: scaleIn 0.2s ease forwards; /* Animation de zoom lorsqu'une case est sélectionnée */
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
+
+
+/*************/
+
+body {
+    /*background-image: url('../img/fond.jpg'); */
+    background-size: cover; /* Redimensionner l'image de fond pour couvrir toute la page */
+    background-repeat: no-repeat; /* Ne pas répéter l'image de fond */
+	font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+	background-color: #001332;;
+}
+
+#letters {
+	width: 90%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 20px;
+}
+
+.letter {
+	font-weight: bold;
+	font-size: 40px;
+	border: 2px solid rgb(255, 255, 255);
+	width: calc(100% / 10); /* Calculating width dynamically for 9 letters in a row */
+	height: 50px;
+	margin: 1px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	background: #ffffff;
+	color: rgb(0, 0, 0);
+	transition: all 0.1s ease;
+	border-radius: 5px;
+}
+
+.letter:hover {
+	color: rgb(150, 130, 228);
+	background: #2b1d86;
+}
+
+
+#smallimages img {
+    border: 1px solid rgb(39, 36, 66);
+    /*box-shadow: 0 0 5px rgba(39, 36, 66, 0.5);
+    */margin: 2px; 
+	border-radius: 10px;
+}
+
+#smallimages {
+	max-width: 30%; /* Définir une largeur maximale */
+    max-height: 70vh; /* Définir une hauteur maximale relative à la hauteur de la fenêtre */
+    overflow: auto; /* Ajouter une barre de défilement en cas de dépassement de la taille maximale */
+    margin: 20px;
+}
+
+#blanks{
+	max-width: 80%; /* Définir une largeur maximale pour la div espaces */
+	border-radius: 15px;
+	margin: 30px;
+}
+
+/* INDICE IMAGE */ 
+#hintImage{
+    width: 45px;
+    height: 45px;
+	margin-left: 30px; /* Ajoute une marge de 10 pixels autour de l'image */
+
+}
+
+h1 {
+	color: #fff;
+}
+
+
+
+/* timer */
+
+#timer {
+    font-size: 20px;
+    font-weight: bold;
+    color: red;
+    animation: countdown 1s linear infinite alternate; /* Animation du compte à rebours */
+}
+
+@keyframes countdown {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.2;
+    }
+}
+
+/* quand le mot est correct*/
+@keyframes glow {
+    0% { text-shadow: 0 0 5px rgb(239, 255, 12); }
+    50% { text-shadow: 0 0 20px rgba(255,255,255,0.7); }
+    100% { text-shadow: 0 0 5px rgba(255,255,255,0.7); }
+}
+
+.found {
+    animation: glow 1.5s infinite;
+}
+
+/*quand le mot est incorrect*/
+
+@keyframes incorrectAnimation {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.incorrect {
+    animation: incorrectAnimation 0.5s ease;
+    text-shadow: 
+        0 0 5px red, 
+        0 0 10px red, 
+        0 0 15px red, 
+        0 0 20px red, 
+        0 0 25px red; /* Effet d'illumination rouge */
+}
+
+
+/*POINTS*/
+
+#points{
+    color: white;
+}
+
+.coin-img {
+    width: 40px; /* Définissez la largeur souhaitée */
+    height: 40px; /* Définissez la hauteur souhaitée */
+    vertical-align: middle; /* Alignez l'image verticalement au milieu */
+
+}

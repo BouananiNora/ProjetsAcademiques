@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Règles du Jeu Wordle</title>
+    <link rel="stylesheet" href="style/wordle.css" />
+</head>
+
+    <body >
+        
+        <input type="button" onclick="window.location.href='wordle.html';" value="Retour au jeu" />
+        
+        <div id="titre"><br>Comment jouer</div>
+        
+        <div class="text">
+            <br>Vous devez deviner le mot caché en 6 essais et la couleur des lettres change pour montrer à quel point vous êtes proche.<br>
+        </div>
+        <div class="text">
+            Pour commencer le jeu, entrez simplement n'importe quel mot, par exemple&nbsp;:
+        </div>
+    
+    <div class="plateauregle">
+        <!-- Exemple de ligne avec des lettres -->
+        <div class="Case correcte">F</div>
+        <div class="Case incorrecte">O</div>
+        <div class="Case malplacee">R</div>
+        <div class="Case incorrecte">M</div>
+        <div class="Case malplacee">E</div>
+    </div>
+    <br>
+    <div class="text-tiles">
+        <div class="plateauregle">
+            <div class="Case incorrecte">O</div>
+            <div class="Case incorrecte">M</div>n'est pas du tout dans le mot cible.
+        </div>
+        <div class="plateauregle">
+            <div class="Case malplacee">R</div>
+            <div class="Case malplacee">E</div>est dans le mot mais au mauvais endroit.
+        </div>
+        <div class="plateauregle">
+            <div class="Case correcte">F</div>est dans le mot et au bon endroit.
+        </div>
+    </div>
+    <br>
+    <p>Une autre tentative de trouver des lettres correspondantes dans le mot cible.</p>
+    <div class="plateauregle">
+        <div class="Case incorrecte">O</div>
+        <div class="Case incorrecte">D</div>
+        <div class="Case correcte">E</div>
+        <div class="Case correcte">U</div>
+        <div class="Case correcte">R</div>
+    </div>
+    <p>Si proche!</p>
+    <div class="plateauregle">
+        <div class="Case correcte">F</div>
+        <div class="Case correcte">L</div>
+        <div class="Case correcte">E</div>
+        <div class="Case correcte">U</div>
+        <div class="Case correcte">R</div>
+    </div>
+    
+    <p>Mot deviné! 🏆</p>
+    
+    
+            
+        
+    </body>
+
+</html>

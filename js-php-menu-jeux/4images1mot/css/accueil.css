@@ -1,0 +1,292 @@
+/*STYLE UIVERSE*/
+.btn-shine {
+    text-align: center;
+    font-size: 17px;
+    top: 50%;
+    left: 50%;
+    padding: 12px 48px;
+    color: #fff;
+    background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #5f7092 20%);
+    background-position: 0;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3s infinite linear;
+    animation-fill-mode: forwards;
+    -webkit-text-size-adjust: none;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    font-family: "Poppins", sans-serif;
+  }
+  @-moz-keyframes shine {
+    0% {
+      background-position: 0;
+    }
+    60% {
+      background-position: 180px;
+    }
+    100% {
+      background-position: 180px;
+    }
+  }
+  @-webkit-keyframes shine {
+    0% {
+      background-position: 0;
+    }
+    60% {
+      background-position: 180px;
+    }
+    100% {
+      background-position: 180px;
+    }
+  }
+  @-o-keyframes shine {
+    0% {
+      background-position: 0;
+    }
+    60% {
+      background-position: 180px;
+    }
+    100% {
+      background-position: 180px;
+    }
+  }
+  @keyframes shine {
+    0% {
+      background-position: 0;
+    }
+    60% {
+      background-position: 180px;
+    }
+    100% {
+      background-position: 180px;
+    }
+  }
+/*******************/  
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #001332;
+    background-size: cover; /* Ajuste la taille de l'image pour couvrir toute la zone */
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column; /* Ajout pour aligner les éléments verticalement */
+}
+
+.retour_menu {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.img_porte {
+  width: auto;
+  height: 40px;
+}
+
+.img_porte:hover {
+  width: auto;
+  height: 60px;
+}
+.accueil-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1000px;
+  padding: 10px;
+  margin: 20px auto;
+  transform: translate(-50%, -55%);
+  background: rgba(0,0,0,.9);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+  overflow: visible;
+  text-align: center; /* Ajout de cette ligne */
+
+}
+
+.img_div {
+    text-align: center;
+    margin-bottom: 20px; /* Ajustez la marge selon vos préférences */
+    
+}
+
+.img_menu {
+    width: auto;
+    height: 300px;
+}
+
+.titre_menu{
+    text-align: center;
+    font-size: 17px;
+    color: rgb(255, 255, 255);}
+
+    
+.form-container {
+    margin: 5px;
+    text-align: center;
+    /*background-color: #001e4d;*/
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+
+
+input {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    display: block;
+    width: 230px;
+    background: #f9f8f6;
+    padding: 1rem;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+
+label {
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  color: white;
+}
+
+/* STYLE POUR LE BOUTON PAYS */
+
+.shadow_btn_pays {
+    padding: 10px 50px;
+    border: none;
+    font-size: 17px;
+    color: #fff;
+    border-radius: 7px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: 0.5s;
+    transition-property: box-shadow;
+    cursor: pointer;
+}
+  
+.shadow_btn_pays {
+    background: rgb(191, 0, 255);
+    box-shadow: 0 0 25px rgb(191, 0, 255);
+}
+  
+.shadow_btn_pays:hover {
+    box-shadow: 0 0 5px rgb(191, 0, 255),
+                0 0 25px rgb(191, 0, 255),
+                0 0 50px rgb(191, 0, 255),
+                0 0 100px rgb(191, 0, 255);
+}
+
+/* STYLE POUR LE BOUTON ASTRONOMIE */
+.shadow_btn_astro {
+  padding: 10px 50px;
+  border: none;
+  font-size: 17px;
+  color: #fff;
+  border-radius: 7px;
+  letter-spacing: 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: 0.5s;
+  transition-property: box-shadow;
+  cursor: pointer;
+}
+
+.shadow_btn_astro {
+  background: rgb(21, 0, 255);
+  box-shadow: 0 0 25px rgb(21, 0, 255);
+}
+
+.shadow_btn_astro:hover {
+  box-shadow: 0 0 5px rgb(21, 0, 255),
+              0 0 25px rgb(21, 0, 255),
+              0 0 50px rgb(21, 0, 255),
+              0 0 100px rgb(21, 0, 255);
+}
+
+/* STYLE POUR LE BOUTON FILMS */
+.shadow_btn_films {
+  padding: 10px 50px;
+  border: none;
+  font-size: 17px;
+  color: #fff;
+  border-radius: 7px;
+  letter-spacing: 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: 0.5s;
+  transition-property: box-shadow;
+  cursor: pointer;
+}
+
+.shadow_btn_films {
+  background: rgb(255, 0, 128);
+  box-shadow: 0 0 25px rgb(255, 0, 128);
+}
+
+.shadow_btn_films:hover {
+  box-shadow: 0 0 5px rgb(255, 0, 128),
+              0 0 25px rgb(255, 0, 128),
+              0 0 50px rgb(255, 0, 128),
+              0 0 100px rgb(255, 0, 128);
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-between; /* Pour répartir les boutons uniformément */
+  margin-top: 20px; /* Ajustez la marge selon vos préférences */
+}
+
+/* Ajoutez ces styles CSS pour aligner horizontalement les boutons */
+.shadow_btn_pays,
+.shadow_btn_astro,
+.shadow_btn_films {
+  flex: 1; /* Pour que chaque bouton occupe la même largeur */
+  margin: 0 5px; /* Ajustez la marge entre les boutons selon vos préférences */
+}
+
+
+
+/* REGLES DU JEU BTN */
+button {
+  padding: 10px 20px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 400;
+  color: #ffffff80;
+  text-shadow: none;
+  background: transparent;
+  cursor: pointer;
+  box-shadow: transparent;
+  border: 1px solid #ffffff80;
+  transition: 0.5s ease;
+  user-select: none;
+}
+
+#btn:hover,
+:focus {
+  color: #ffffff;
+  background: transparent;
+  border: 1px solid #f2f4f6b6;
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+  box-shadow: 0 0 5px #ffffffa3, 0 0 20px #ffffffa1, 0 0 50px #ffffffb3,
+    0 0 100px #ffffffba;
+}
+#btn {
+  display: block;
+  margin: 0 auto 20px; /* Cela centre le bouton horizontalement */
+}
