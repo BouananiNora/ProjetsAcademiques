@@ -28,3 +28,4 @@ Ce dépôt a été créé pour centraliser mes projets et partager mon parcours 
 ---
 
 📌 *Pour chaque projet, un README spécifique est disponible dans le dossier correspondant.*
+# projets-informatique-hepl
