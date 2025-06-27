@@ -1,0 +1,378 @@
+﻿<Window x:Class="VIEW.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VIEW"
+        xmlns:converters="clr-namespace:VIEW"
+        xmlns:core="clr-namespace:MODEL;assembly=MODEL"
+        mc:Ignorable="d"
+        Title="{Binding NomBibliotheque, StringFormat='Système de Gestion - {0}'}" Height="650" Width="1000" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <converters:ImagePathConverter x:Key="ImagePathConverter"/>
+        <converters:StatutEmpruntColorConverter x:Key="StatutEmpruntColorConverter"/>
+        <converters:DateConverter x:Key="DateConverter"/>
+   
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="3"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="MinWidth" Value="80"/>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+
+        <Style TargetType="DatePicker">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Menu principal -->
+        <Menu Grid.Row="0">
+            <MenuItem Header="Fichier">
+                <MenuItem Header="Nouveau" Click="NouveauMenuItem_Click"/>
+                <MenuItem Header="Charger" Click="ChargerMenuItem_Click"/>
+                <MenuItem Header="Sauvegarder" Click="SauvegarderMenuItem_Click"/>
+                <Separator/>
+                <MenuItem Header="Paramètres" Click="ParametresMenuItem_Click"/>
+                <Separator/>
+                <MenuItem Header="Quitter" Click="QuitterMenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="Auteurs">
+                <MenuItem Header="Ajouter un auteur" Click="AjouterAuteurMenuItem_Click"/>
+                <MenuItem Header="Importer un auteur (XML)" Click="ImporterAuteurMenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="Livres">
+                <MenuItem Header="Ajouter un livre" Click="AjouterLivreMenuItem_Click"/>
+                <MenuItem Header="Importer un livre (XML)" Click="ImporterLivreMenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="Emprunts">
+                <MenuItem Header="Enregistrer un emprunt" Click="EnregistrerEmpruntMenuItem_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- Contenu principal -->
+        <TabControl Grid.Row="1" Margin="10">
+            <!-- Onglet Auteurs -->
+            <TabItem Header="Auteurs">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="350"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Liste des auteurs -->
+                    <DataGrid Grid.Column="0" x:Name="AuteursDataGrid"
+                              ItemsSource="{Binding Auteurs}"
+                              SelectedItem="{Binding AuteurSelectionne}"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              SelectionMode="Single"
+                              SelectionChanged="AuteursDataGrid_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                            <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" Width="*"/>
+                            <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" Width="*"/>
+                            <DataGridTextColumn Header="Date de naissance" Binding="{Binding DateNaissance, Converter={StaticResource DateConverter}}" Width="120"/>
+                            
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+
+                    <!-- Détails de l'auteur -->
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Text="Détails de l'auteur" FontSize="16" FontWeight="Bold" Margin="5,10"/>
+
+                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                            <StackPanel Orientation="Vertical" Visibility="{Binding IsAuteurSelectionne, Converter={StaticResource BoolToVisibilityConverter}}">
+                                <Image MaxHeight="150" MaxWidth="150" Margin="10"
+                                       Source="{Binding AuteurSelectionne.PhotoPath, Converter={StaticResource ImagePathConverter}}"
+                                       Stretch="Uniform"/>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!-- ID -->
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="ID :"/>
+                                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding AuteurSelectionne.Id}" IsReadOnly="True"/>
+
+                                    <!-- Nom -->
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Nom :"/>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding AuteurSelectionne.Nom, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                    <!-- Prénom -->
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Prénom :"/>
+                                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding AuteurSelectionne.Prenom, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                    <!-- Date de naissance -->
+                                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Naissance :"/>
+                                    <DatePicker Grid.Row="3" Grid.Column="1" SelectedDate="{Binding AuteurSelectionne.DateNaissance, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                    <!-- Photo -->
+                                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Photo :"/>
+                                    <Grid Grid.Row="4" Grid.Column="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox Grid.Column="0" Text="{Binding AuteurSelectionne.PhotoPath, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <Button Grid.Column="1" Content="..." Click="ChoisirPhotoAuteur_Click" Width="30"/>
+                                    </Grid>
+
+                                    <!-- Biographie -->
+                                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Biographie :"/>
+                                    <TextBox Grid.Row="5" Grid.Column="1" 
+                                             Text="{Binding AuteurSelectionne.Biographie, UpdateSourceTrigger=PropertyChanged}"
+                                             TextWrapping="Wrap" AcceptsReturn="True" Height="100" VerticalScrollBarVisibility="Auto"/>
+                                </Grid>
+                            </StackPanel>
+                        </ScrollViewer>
+
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                            <Button Content="Exporter (XML)" Click="ExporterAuteurXML_Click"
+            IsEnabled="{Binding IsAuteurSelectionne}"/>
+                            <Button Content="Supprimer" Click="SupprimerAuteur_Click"
+            IsEnabled="{Binding IsAuteurSelectionne}"/>
+                            <Button Content="Enregistrer" Click="EnregistrerAuteur_Click"
+            IsEnabled="{Binding IsAuteurSelectionne}"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <!-- Onglet Livres -->
+            <TabItem Header="Livres">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="350"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Liste des livres -->
+                    <DataGrid Grid.Column="0" x:Name="LivresDataGrid"
+                              ItemsSource="{Binding Livres}"
+                              SelectedItem="{Binding LivreSelectionne}"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              SelectionMode="Single"
+                              SelectionChanged="LivresDataGrid_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" Width="110"/>
+                            <DataGridTextColumn Header="Titre" Binding="{Binding Titre}" Width="*"/>
+                            <DataGridTextColumn Header="Auteur" Binding="{Binding Auteur.NomComplet}" Width="150"/>
+                            <DataGridTextColumn Header="Année" Binding="{Binding Annee}" Width="60"/>
+                            <DataGridTextColumn Header="Genre" Binding="{Binding Genre}" Width="100"/>
+                            <DataGridTextColumn Header="Pages" Binding="{Binding NombrePages}" Width="60"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+
+                    <!-- Détails du livre -->
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Text="Détails du livre" FontSize="16" FontWeight="Bold" Margin="5,10"/>
+
+                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                            <StackPanel Orientation="Vertical" Visibility="{Binding IsLivreSelectionne, Converter={StaticResource BoolToVisibilityConverter}}">
+                                <Image MaxHeight="150" MaxWidth="100" Margin="10"
+                                       Source="{Binding LivreSelectionne.CouverturePath, Converter={StaticResource ImagePathConverter}}"
+                                       Stretch="Uniform"/>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!-- ISBN -->
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="ISBN :"/>
+                                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding LivreSelectionne.ISBN, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsLivreExistant}"/>
+
+                                    <!-- Titre -->
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Titre :"/>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding LivreSelectionne.Titre, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                    <!-- Auteur -->
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Auteur :"/>
+                                    <ComboBox Grid.Row="2" Grid.Column="1" 
+                                              ItemsSource="{Binding Auteurs}"
+                                              SelectedItem="{Binding LivreSelectionne.Auteur, UpdateSourceTrigger=PropertyChanged}"
+                                              DisplayMemberPath="NomComplet"/>
+
+                                    <!-- Année -->
+                                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Année :"/>
+                                    <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding LivreSelectionne.Annee, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                    <!-- Genre -->
+                                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Genre :"/>
+                                    <ComboBox Grid.Row="4" Grid.Column="1" 
+                                              ItemsSource="{Binding Source={StaticResource GenresLivre}}"
+                                              SelectedItem="{Binding LivreSelectionne.Genre, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                    <!-- Nombre de pages -->
+                                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Pages :"/>
+                                    <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding LivreSelectionne.NombrePages, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                    <!-- Couverture -->
+                                    <TextBlock Grid.Row="6" Grid.Column="0" Text="Couverture :"/>
+                                    <Grid Grid.Row="6" Grid.Column="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox Grid.Column="0" Text="{Binding LivreSelectionne.CouverturePath, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <Button Grid.Column="1" Content="..." Click="ChoisirCouvertureLivre_Click" Width="30"/>
+                                    </Grid>
+
+                                    <!-- Résumé -->
+                                    <TextBlock Grid.Row="7" Grid.Column="0" Text="Résumé :"/>
+                                    <TextBox Grid.Row="7" Grid.Column="1" 
+                                             Text="{Binding LivreSelectionne.Resume, UpdateSourceTrigger=PropertyChanged}"
+                                             TextWrapping="Wrap" AcceptsReturn="True" Height="100" VerticalScrollBarVisibility="Auto"/>
+                                </Grid>
+                            </StackPanel>
+                        </ScrollViewer>
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                            <Button Content="Exporter (XML)" Click="ExporterLivreXML_Click"
+            IsEnabled="{Binding IsLivreSelectionne}"/>
+                            <Button Content="Supprimer" Click="SupprimerLivre_Click"
+            IsEnabled="{Binding IsLivreSelectionne}"/>
+                            <Button Content="Enregistrer" Click="EnregistrerLivre_Click"
+            IsEnabled="{Binding IsLivreSelectionne}"/>
+                            <Button Content="Emprunter" Click="EnregistrerEmprunt_Click"
+            IsEnabled="{Binding IsLivreSelectionne}"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <!-- Onglet Emprunts -->
+            <TabItem Header="Emprunts">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Filtre des emprunts -->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+                        <TextBlock Text="Filtrer :"/>
+                        <ComboBox x:Name="FiltreEmpruntsComboBox" SelectedIndex="0" Width="150" SelectionChanged="FiltreEmpruntsComboBox_SelectionChanged">
+                            <ComboBoxItem Content="Tous les emprunts"/>
+                            <ComboBoxItem Content="Emprunts en cours"/>
+                            <ComboBoxItem Content="Emprunts en retard"/>
+                            <ComboBoxItem Content="Emprunts retournés"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!-- Liste des emprunts -->
+                    <DataGrid Grid.Row="1" x:Name="EmpruntsDataGrid"
+                              ItemsSource="{Binding EmpruntsFiltres}"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                            <DataGridTextColumn Header="Livre" Binding="{Binding Livre.Titre}" Width="*"/>
+                            <DataGridTextColumn Header="Emprunteur" Binding="{Binding NomEmprunteur}" Width="150"/>
+                            <DataGridTextColumn Header="Date emprunt" Binding="{Binding DateEmprunt, Converter={StaticResource DateConverter}}" Width="100"/>
+                            <DataGridTextColumn Header="Date retour prévue" Binding="{Binding DateRetourPrevue, Converter={StaticResource DateConverter}}" Width="120"/>
+                            <DataGridTextColumn Header="Jours écoulés" Binding="{Binding JoursEcoulés}" Width="80"/>
+                            <DataGridTextColumn Header="Statut" Width="100">
+                                <DataGridTextColumn.Binding>
+                                    <Binding Path="Statut" />
+                                </DataGridTextColumn.Binding>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="{Binding Converter={StaticResource StatutEmpruntColorConverter}}" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn Header="Actions" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Retourner" Click="RetournerLivre_Click" Tag="{Binding Id}"
+                                                Visibility="{Binding EstRetourne, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=inverse}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <!-- Barre de statut -->
+        <StatusBar Grid.Row="2">
+            <StatusBarItem>
+                <TextBlock x:Name="StatusTextBlock" Text="Prêt"/>
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem>
+                <TextBlock Text="{Binding NombreLivres, StringFormat=Livres: {0}}"/>
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem>
+                <TextBlock Text="{Binding NombreEmpruntsEnCours, StringFormat=Emprunts en cours: {0}}"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
